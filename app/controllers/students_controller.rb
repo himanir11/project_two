@@ -12,6 +12,7 @@ class StudentsController < ApplicationController
 
   # GET /students/new
   def new
+    @teacher = Teacher.find(params[:teacher_id])
     @student = Student.new
   end
 
@@ -21,7 +22,9 @@ class StudentsController < ApplicationController
 
   # POST /students or /students.json
   def create
-    @student = Student.new(student_params)
+    @teacher = Teacher.find( params[:student][:teacher_id])
+    @teacher = Teacher.find( params[:student][:teacher_id])
+    @student = @teacher.students.new(student_params)
 
     respond_to do |format|
       if @student.save
@@ -65,6 +68,6 @@ class StudentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def student_params
-      params.require(:student).permit(:name, :roll_no)
+      params.require(:student).permit(:name, :roll_no, :teacher_id)
     end
 end

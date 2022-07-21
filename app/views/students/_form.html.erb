@@ -16,6 +16,11 @@
     <%= form.text_field :name %>
   </div>
 
+  <div>
+    <%= form.hidden_field :teacher_id , value: @teacher.id %>
+  </div>
+
+
   <div class="field">
     <%= form.label :roll_no %>
     <%= form.number_field :roll_no %>
